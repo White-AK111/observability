@@ -3,7 +3,7 @@ docker run \
     --rm \
     -p 9090:9090 \
     --name prometheus \
-    -v /home/white/GolandProjects/observability/docker/prometheus.yml:/etc/prometheus/prometheus.yml \
-    -v /home/white/GolandProjects/observability/docker/prometheus.rules.yml:/etc/prometheus/prometheus.rules.yml \
-    -v /home/white/GolandProjects/observability/docker/alert.rules.yml:/etc/prometheus/alert.rules.yml \
+    -v /home/white/GolandProjects/observability/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
+    -v /home/white/GolandProjects/observability/prometheus/prometheus.rules.yml:/etc/prometheus/prometheus.rules.yml \
+    -v /home/white/GolandProjects/observability/prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml \
     prom/prometheus
