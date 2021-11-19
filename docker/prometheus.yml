@@ -1,0 +1,34 @@
+# prometheus global config
+global:
+  scrape_interval:     15s    # как часто очищать цели
+  evaluation_interval: 15s    # смотрим, обновились ли правила
+  # scrape_timeout is set to the global default (10s).
+
+alerting:                     # настройки для связанного Alertmanager
+  #alertmanagers:
+  # - static_configs:
+  #     - targets:
+  #         - alertmanager:9093
+
+rule_files:                   # список файлов с правилами и алертами
+  - "prometheus.rules.yml"
+  - "alert.rules.yml"
+
+scrape_configs:               # список целей с конфигурацией
+  - job_name: service1
+    scrape_interval: 5s
+    scrape_timeout: 2s
+    metrics_path: /metrics
+    honor_labels: true
+    static_configs:
+      - targets:
+        - 172.17.0.1:9000
+
+  - job_name: service2
+    scrape_interval: 5s
+    scrape_timeout: 2s
+    metrics_path: /metrics
+    honor_labels: true
+    static_configs:
+      - targets:
+          - 172.17.0.1:9001
