@@ -1,0 +1,20 @@
+groups:
+  - name: Hardware alerts
+    rules:
+      - alert: Max count of id
+        expr: service2_id_count{job="service2"} >= 3
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          title: Node {{ $labels.instance }} get max count of id.
+          description: Check service {{ $labels.job }} on {{ $labels.instance }}.
+
+      - alert: Hight latency
+        expr: service2_latency_sum{job="service2", method="GET"} >= 1000
+        for: 10s
+        labels:
+          severity: page
+        annotations:
+          title: Node {{ $labels.instance }} high request latency for GET method.
+          description: Check service {{ $labels.job }} on {{ $labels.instance }}.
